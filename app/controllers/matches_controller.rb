@@ -15,10 +15,13 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+
+    @users = User.all
   end
 
   # GET /matches/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /matches
@@ -69,6 +72,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:player_home_id, :player_visit_id, :winner, :result_id)
+      params.require(:match).permit(:player_home_id, :player_visit_id, :winner, :game1, :game2, :game3, :game4, :game5)
     end
 end

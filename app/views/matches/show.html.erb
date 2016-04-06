@@ -2,12 +2,12 @@
 
 <p>
   <strong>Player home:</strong>
-  <%= @match.player_home_id %>
+  <%= @match.player_home.fullname %>
 </p>
 
 <p>
   <strong>Player visit:</strong>
-  <%= @match.player_visit_id %>
+  <%= @match.player_visit.fullname %>
 </p>
 
 <p>
@@ -16,8 +16,28 @@
 </p>
 
 <p>
-  <strong>Result:</strong>
-  <%= @match.result_id %>
+  <strong>Game 1:</strong>
+  <%= @match.game1 %>
+</p>
+
+<p>
+  <strong>Game 2:</strong>
+  <%= @match.game2 %>
+</p>
+
+<p>
+  <strong>Game 3:</strong>
+  <%= @match.game3 %>
+</p>
+
+<p>
+  <strong>Game 4:</strong>
+  <%= @match.game4 %>
+</p>
+
+<p>
+  <strong>Game 5:</strong>
+  <%= @match.game5 %>
 </p>
 
 <%= link_to 'Edit', edit_match_path(@match) %> |

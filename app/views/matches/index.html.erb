@@ -8,7 +8,11 @@
       <th>Player home</th>
       <th>Player visit</th>
       <th>Winner</th>
-      <th>Result</th>
+      <th>Game 1</th>
+      <th>Game 2</th>
+      <th>Game 3</th>
+      <th>Game 4</th>
+      <th>Game 5</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +23,11 @@
         <td><%= match.player_home_id %></td>
         <td><%= match.player_visit_id %></td>
         <td><%= match.winner %></td>
-        <td><%= match.result_id %></td>
+        <td><%= match.game1 %></td>
+        <td><%= match.game2 %></td>
+        <td><%= match.game3 %></td>
+        <td><%= match.game4 %></td>
+        <td><%= match.game5 %></td>
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -12,20 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :player_home_id %><br>
-    <%= f.number_field :player_home_id %>
+    <label>Player Home:</label>
+    <%= f.collection_select(:player_home_id, @users, :id, :fullname) %>
   </div>
   <div class="field">
-    <%= f.label :player_visit_id %><br>
-    <%= f.number_field :player_visit_id %>
+    <label>Player Visit:</label>
+    <%= f.collection_select(:player_visit_id, @users, :id, :fullname) %>
   </div>
   <div class="field">
     <%= f.label :winner %><br>
     <%= f.number_field :winner %>
   </div>
   <div class="field">
-    <%= f.label :result_id %><br>
-    <%= f.number_field :result_id %>
+    <%= f.label :game1 %><br>
+    <%= f.text_field :game1, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :game2 %><br>
+    <%= f.text_field :game2, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :game3 %><br>
+    <%= f.text_field :game3, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :game4 %><br>
+    <%= f.text_field :game4, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :game5 %><br>
+    <%= f.text_field :game5, autofocus: true %>
   </div>
   <div class="actions">
     <%= f.submit %>

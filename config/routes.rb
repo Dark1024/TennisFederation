@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'page#index'
 
   resources :matches
-  resources :results
   devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
