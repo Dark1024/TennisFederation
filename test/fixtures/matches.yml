@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_home_id: 1
+  player_visit_id: 1
+  winner: 1
+  result_id: 1
+
+two:
+  player_home_id: 1
+  player_visit_id: 1
+  winner: 1
+  result_id: 1
