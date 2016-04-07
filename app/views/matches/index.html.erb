@@ -1,41 +1,57 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Matches</h1>
-
-<table>
+<%- model_class = Match -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Player home</th>
-      <th>Player visit</th>
-      <th>Winner</th>
-      <th>Game 1</th>
-      <th>Game 2</th>
-      <th>Game 3</th>
-      <th>Game 4</th>
-      <th>Game 5</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:player_home_id) %></th>
+      <th><%= model_class.human_attribute_name(:player_visit_id) %></th>
+      <th><%= model_class.human_attribute_name(:game1) %></th>
+      <th><%= model_class.human_attribute_name(:game2) %></th>
+      <th><%= model_class.human_attribute_name(:game3) %></th>
+      <th><%= model_class.human_attribute_name(:game4) %></th>
+      <th><%= model_class.human_attribute_name(:game5) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.player_home_id %></td>
-        <td><%= match.player_visit_id %></td>
-        <td><%= match.winner %></td>
+        <td><%= link_to match.id, match_path(match) %></td>
+        <% if match.winner == 1 %>
+          <td><strong><%= match.player_home.fullname %></strong></td>
+        <% else %>
+          <td><%= match.player_home.fullname %></td>
+        <% end %>
+        
+        <% if match.winner == 2 %>
+          <td><strong><%= match.player_visit.fullname %></strong></td>
+        <% else %>
+          <td><%= match.player_visit.fullname %></td>
+        <% end %>
         <td><%= match.game1 %></td>
         <td><%= match.game2 %></td>
         <td><%= match.game3 %></td>
         <td><%= match.game4 %></td>
         <td><%= match.game5 %></td>
-        <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l match.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_match_path(match), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      match_path(match),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-danger btn-xs' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Match', new_match_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_match_path,
+            :class => 'btn btn-primary' %>

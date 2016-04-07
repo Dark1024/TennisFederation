@@ -1,39 +1,57 @@
-<h2>Partidos</h2>
-<button type="button" class="btn btn-default">
-	<%= link_to "Create Match", new_match_path  %>
-</button>
-<table class="table">
-	<thead>
-		<th>Date and Time</th>
-		<th>Player home</th>
-  		<th>Player visit</th>
-		<th>Game 1</th>
-		<th>Game 2</th>
-		<th>Game 3</th>
-		<th>Game 4</th>
-		<th>Game 5</th>
-	</thead>
-	<tbody>
-		<% @matches.each do |match| %>
-			<tr>
-				<td><%= match.created_at %>
-				<% if match.winner == 1 %>
-					<td><strong><%= match.player_home.fullname %></strong></td>
-				<% else %>
-					<td><%= match.player_home.fullname %></td>
-				<% end %>
+<ul class="nav nav-tabs">
+	<li class="active">
+		<a data-toggle="tab" href="#matches">Partidos</a>
+	</li>
+	<li>
+		<a data-toggle="tab" href="#ranking">Ranking</a>
+	</li>
+</ul>
 
-				<% if match.winner == 2 %>
-					<td><strong><%= match.player_visit.fullname %></strong></td>
-				<% else %>
-					<td><%= match.player_visit.fullname %></td>
-				<% end %>
-		        <td><%= match.game1 %></td>
-		        <td><%= match.game2 %></td>
-		        <td><%= match.game3 %></td>
-		        <td><%= match.game4 %></td>
-		        <td><%= match.game5 %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<div class="tab-content">
+	<div id="matches" class="tab-pane fade in active">
+		<div class="content">
+			<button type="button" class="btn btn-default pull-right">
+				<%= link_to "Create Match", new_match_path  %>
+			</button>
+
+			<table class="table table-hover">
+				<thead>
+					<th>Date and Time</th>
+					<th>Player home</th>
+			  		<th>Player visit</th>
+					<th>Game 1</th>
+					<th>Game 2</th>
+					<th>Game 3</th>
+					<th>Game 4</th>
+					<th>Game 5</th>
+				</thead>
+				<tbody>
+					<% @matches.each do |match| %>
+						<tr>
+							<td><%= match.created_at.strftime("%Y %m %d") %>
+							<% if match.winner == 1 %>
+								<td><strong><%= match.player_home.fullname %></strong></td>
+							<% else %>
+								<td><%= match.player_home.fullname %></td>
+							<% end %>
+
+							<% if match.winner == 2 %>
+								<td><strong><%= match.player_visit.fullname %></strong></td>
+							<% else %>
+								<td><%= match.player_visit.fullname %></td>
+							<% end %>
+					        <td><%= match.game1 %></td>
+					        <td><%= match.game2 %></td>
+					        <td><%= match.game3 %></td>
+					        <td><%= match.game4 %></td>
+					        <td><%= match.game5 %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="ranking" class="tab-pane fade">
+		<p>Aqui va lo de Rankings!</p>
+	</div>
+</div>
