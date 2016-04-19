@@ -1,4 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
+	
+	layout false
+	
 	private
 
   	def sign_up_params

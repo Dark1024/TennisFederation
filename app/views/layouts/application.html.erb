@@ -1,67 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
   <title>TennisFederation</title>
-  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' %> 
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <a class="navbar-brand" href="#">Federación de Tenis</a>
-    <ul class="nav navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item drowpdown">
-        <% if user_signed_in? %>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-        aria-expanded="false"><strong><%= current_user.email %></strong></a>
-        <ul class="dropdown-menu">
-            <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-          aria-expanded="false"><strong>Log In</strong></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-            <li><%= link_to "Login", new_user_session_path %></li>
-        <% end %>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-
-  <div class="publicity text-center" id="publicity-1">
-    <span>
-      <strong>Publicidad</strong>
-    </span>
-  </div>
-
-  <div class="body">
-    <div class="col-md-2 publicity" id="publicity-2">
-      <span><strong>Publicidad</strong></span>
-    </div>
-    <div class="col-md-8 container">
-      <%= yield %>
-    </div>
-    <div class="col-md-2 publicity" id="publicity-3">
-      <span><strong>Publicidad</strong></span>
-    </div>
-  </div>
-  </body>
-
+  <section class="vbox">
+    <header class="bg-dark dk header navbar navbar-fixed-top-xs">
+      <div class="navbar-header aside-md" id="brand-tennis-federation">
+        <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+          <i class="fa fa-bars"></i>
+        </a>
+        <a href="#" class="navbar-brand" data-toggle="fullscreen">
+          <%= image_tag("http://flatfull.com/themes/note/images/logo.png", class: "m-r-sm") %>Federación de Tenis</a>
+        <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
+          <i class="fa fa-cog"></i>
+        </a>
+      </div>    
+      <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+        <li class="dropdown">
+          <% if user_signed_in? %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="thumb-sm avatar pull-left">
+                <%= image_tag("http://flatfull.com/themes/note/images/avatar.jpg") %>
+              </span> <%= current_user.fullname %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">
+              <span class="arrow top"></span>
+              <li>
+                <%= link_to 'Editar Perfil', edit_user_registration_path %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          <% else %>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Ingresar al Sitio 
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">
+              <span class="arrow top"></span>
+              <li>
+                <%= link_to 'Registrarse', new_user_registration_path %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Iniciar Sesión", new_user_session_path %>
+              </li>
+            </ul>
+          <% end %>
+        </li>
+      </ul>      
+    </header>
+    <section>
+      <section class="hbox stretch">
+        <section id="content">
+          <%= yield %>
+        </section>
+      </section>
+    </section>
+  </section>
+</body>
+  
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!-- Include JQuery -->
   <%= javascript_include_tag 'http://code.jquery.com/jquery-2.2.2.min.js' %>
   <!-- Include bootstrap js -->
   <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' %>
+
 </html>

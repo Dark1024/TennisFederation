@@ -1,26 +1,59 @@
-<h2>Log in</h2>
+<!DOCTYPE html>
+<html class="bg-dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  <title>Federacion de Tenis</title>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' %> 
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <section id="content" class="m-t-lg wrapper-md animated fadeInDown">
+    <div class="container aside-xxl">
+      <a class="navbar-brand block" href="">Federación de Tenis</a>
+      <section class="panel panel-default m-t-lg bg-white">
+        <header class="panel-heading text-center">
+          <strong>Iniciar Sesión</strong>
+        </header>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "panel-body wrapper-lg"}) do |f| %>
+          <div class="form-group">
+            <label class="control-label">Correo Electrónico</label>
+            <%= f.email_field :email, autofocus: true, :class => "form-control input-lg", :placeholder => "Ej: nombre@dominio.com" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+          <div class="form-group">
+            <label class="control-label">Contraseña</label>
+            <%= f.password_field :password, autocomplete: "off", :class => "form-control input-lg", :placeholder => "No comparta su contraseña" %>
+          </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox">
+              <%= f.check_box :remember_me %>
+              <label class="control-label">Mantener sesión iniciada</label>
+            </div>
+          <% end -%>
+
+          <div class="actions">
+            <%= f.submit "Iniciar Sesión", :class => "btn btn-primary" %>
+            <%= link_to "¿Olvidó su contraseña?", new_password_path(resource_name), :class => "pull-right m-t-xs" %>
+          </div>
+          
+          <div class="line line-dashed"></div>
+          <p class="text-muted text-center"><small>¿No tiene cuenta?</small></p>
+
+          <%= render "devise/shared/links" %>
+        <% end %>
+      </section>
     </div>
-  <% end -%>
+  </section>
+</body>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- Include JQuery -->
+  <%= javascript_include_tag 'http://code.jquery.com/jquery-2.2.2.min.js' %>
+  <!-- Include bootstrap js -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' %>
+</html>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>

@@ -1,16 +1,46 @@
-<h2>Forgot your password?</h2>
+<!DOCTYPE html>
+<html class="bg-dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  <title>Federacion de Tenis</title>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' %> 
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <section id="content" class="m-t-lg wrapper-md animated fadeInDown">
+    <div class="container aside-xxl">
+      <a class="navbar-brand block" href="">Federación de Tenis</a>
+      <section class="panel panel-default m-t-lg bg-white">
+        <header class="panel-heading text-center">
+          <strong>¿Olvidó su contraseña?</strong>
+        </header>
+		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, :class => "panel-body wrapper-lg"}) do |f| %>
+		  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+		  <div class="form-group">
+		    <label class="control-label">Correo Electrónico</label>
+		    <%= f.email_field :email, autofocus: true, :class => "form-control input-lg" %>
+		  </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+		  <div class="actions">
+		    <%= f.submit "Enviar nueva contraseña", :class => "btn btn-primary"%>
+		  </div>
+		  
+		  <div class="line line-dashed"></div>
 
-<%= render "devise/shared/links" %>
+		  <%= render "devise/shared/links" %>
+		<% end %>
+
+      </section>
+    </div>
+  </section>
+</body>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- Include JQuery -->
+  <%= javascript_include_tag 'http://code.jquery.com/jquery-2.2.2.min.js' %>
+  <!-- Include bootstrap js -->
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' %>
+</html>
